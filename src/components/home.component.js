@@ -67,15 +67,21 @@ export default class Home extends Component {
       color: white;
     `;
     return (
-      <div className="container">
+      <div className="container my-4">
+        <div class="jumbotron jumbotron-fluid bg-dark text-white">
+          <div class="container">
+            <h1 class="display-4">📋 Posts Page</h1>
+            <p class="lead">Here you can see all users posts</p>
+          </div>
+        </div>
           {this.state.specPostActive ? 
-            <div>
-                <button onClick={() => {this.goBack()}}>Go back</button>
+            <Post>
+                <button class="btn btn-outline-info" onClick={() => {this.goBack()}}>Go back</button>
                 <h2>{this.state.currPostTitle}</h2>
                 <p>{this.state.currPostAuthor} | {this.state.currPostDate}</p>
                 <p>{this.state.currPostText}</p>
-            </div> : 
-            posts ? posts.map(item => <Post onClick = {() => this.loadIdPost(item._id)}><h2>{item.title}</h2><p>{item.author + " | " + item.date}</p><p>{item.text}</p></Post>) : ""
+            </Post> : 
+            posts ? posts.map(item => <div class="card bg-dark my-4"><div class="card-body"><Post><h2>{item.title}</h2><p>{item.author + " | " + item.date}</p><p>{item.text}</p><button type="button" class="btn btn-primary" onClick = {() => this.loadIdPost(item._id)}>Read More</button></Post></div></div>) : ""
           }
       </div>
     );
