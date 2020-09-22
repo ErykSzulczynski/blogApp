@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";  
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faUser, faSignOutAlt, faUserCog, faCog} from '@fortawesome/free-solid-svg-icons';
 import logo from './logo.svg';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -50,19 +52,19 @@ class App extends Component {
         <div>
           <nav className="navbar navbar-expand navbar-dark bg-dark">
             <Link to={"/"} className="navbar-brand">
-              postsApp
+            📃 postsApp
             </Link>
             <div className="navbar-nav mr-auto">
               <li className="nav-item">
                 <Link to={"/home"} className="nav-link">
-                  Home
+                  <FontAwesomeIcon icon={faHome} />
                 </Link>
               </li>
 
               {showModeratorBoard && (
                 <li className="nav-item">
                   <Link to={"/mod"} className="nav-link">
-                    Moderator Board
+                    <FontAwesomeIcon icon={faUserCog} />
                   </Link>
                 </li>
               )}
@@ -78,7 +80,6 @@ class App extends Component {
               {currentUser && (
                 <li className="nav-item">
                   <Link to={"/user"} className="nav-link">
-                    User
                   </Link>
                 </li>
               )}
@@ -88,12 +89,12 @@ class App extends Component {
               <div className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <Link to={"/profile"} className="nav-link">
-                    {currentUser.username}
+                  <FontAwesomeIcon icon={faUser} />{currentUser.username}
                   </Link>
                 </li>
                 <li className="nav-item">
                   <a href="/login" className="nav-link" onClick={this.logOut}>
-                    LogOut
+                    <FontAwesomeIcon icon={faSignOutAlt} />
                   </a>
                 </li>
               </div>
