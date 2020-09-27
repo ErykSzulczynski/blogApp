@@ -92,7 +92,6 @@ export default class Profile extends Component {
     const { currentUser } = this.state;
     if(this.state.userPosts === "Not loaded"){
       let postsObj = PostsService.getUserPosts(currentUser.id)
-      let postObjResult;
       postsObj.then(result => this.setPostsState(result, currentUser.id))
     }
     return (
@@ -144,7 +143,7 @@ export default class Profile extends Component {
           </form>
           <h2 className="mt-4">My posts {/*<button type="button" class="btn btn-primary" onClick={() => this.setModalShow()}>Add Post</button>*/}</h2>
           <div>
-            {this.state.userPostsStatus ? this.state.userPosts.map(item => <div><h2>{item.title}</h2><p>{item.author + " | " + item.date}</p><p>{item.text}</p></div>) : null}
+            {this.state.userPostsStatus ? this.state.userPosts.map(item => <div key={item._id}><h2>{item.title}</h2><p>{item.author + " | " + item.date}</p><p>{item.text}</p></div>) : null}
           </div>
         </div>
         </div>

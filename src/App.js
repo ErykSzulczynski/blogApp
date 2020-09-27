@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faUser, faSignOutAlt, faUserCog, faCog} from '@fortawesome/free-solid-svg-icons';
-import logo from './logo.svg';
+import { faHome, faUser, faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -45,14 +44,14 @@ class App extends Component {
   }
 
   render() {
-    const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
+    const { currentUser } = this.state;
 
     return (
       <Router>
         <div>
           <nav className="navbar navbar-expand navbar-dark bg-dark">
             <Link to={"/"} className="navbar-brand">
-            📃 postsApp
+            <span role="img" aria-label="emoji">📃</span> postsApp
             </Link>
             <div className="navbar-nav mr-auto">
               <li className="nav-item">

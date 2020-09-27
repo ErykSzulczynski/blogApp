@@ -1,5 +1,4 @@
 import axios from 'axios';
-import authHeader from './auth-header';
 
 const API_URL = 'http://localhost:8080/api/content/';
 
@@ -9,11 +8,11 @@ class PostsService {
   }
 
   getPost(id) {
-    return axios.get(API_URL + 'post' + '/' + id);
+    return axios.get(API_URL + 'post/' + id);
   }
 
   getUserPosts(uId){
-    return axios.get(API_URL + 'user' + '/' + uId + '/posts')
+    return axios.get(API_URL + 'user/' + uId + '/posts')
   }
 
   addPost(title, text, uId){

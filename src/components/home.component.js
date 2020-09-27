@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import PostsService from "../services/posts.service";
-import UserService from "../services/user.service"
-import Post from "../components/post.component"
 import styled from 'styled-components'
 
 export default class Home extends Component {
@@ -23,7 +21,6 @@ export default class Home extends Component {
   }
 
   loadIdPost = (id) => {
-    let dataResult;
     PostsService.getPost(id).then(result => {
       let currPost = result.data.Post[0]
       this.setState({
@@ -68,20 +65,20 @@ export default class Home extends Component {
     `;
     return (
       <div className="container my-4">
-        <div class="jumbotron jumbotron-fluid bg-dark text-white">
-          <div class="container">
-            <h1 class="display-4">📋 Posts Page</h1>
-            <p class="lead">Here you can see all users posts</p>
+        <div className="jumbotron jumbotron-fluid bg-dark text-white">
+          <div className="container">
+            <h1 className="display-4"><span role="img" aria-label="emoji">📋</span> Posts Page</h1>
+            <p className="lead">Here you can see all users posts</p>
           </div>
         </div>
           {this.state.specPostActive ? 
             <Post>
-                <button class="btn btn-outline-info mb-4" onClick={() => {this.goBack()}}>Go back</button>
+                <button className="btn btn-outline-info mb-4" onClick={() => {this.goBack()}}>Go back</button>
                 <h2>{this.state.currPostTitle}</h2>
                 <p>{this.state.currPostAuthor} | {this.state.currPostDate}</p>
                 <p>{this.state.currPostText}</p>
             </Post> : 
-            posts ? posts.map(item => <div class="card bg-dark my-4"><div class="card-body"><Post><h2>{item.title}</h2><p>{item.author + " | " + item.date}</p><p>{item.text}</p><button type="button" class="btn btn-primary" onClick = {() => this.loadIdPost(item._id)}>Read More</button></Post></div></div>) : ""
+            posts ? posts.map(item => <div className="card bg-dark my-4" key={item._id}><div className="card-body"><Post><h2>{item.title}</h2><p>{item.author + " | " + item.date}</p><p>{item.text}</p><button type="button" className="btn btn-primary" onClick = {() => this.loadIdPost(item._id)}>Read More</button></Post></div></div>) : ""
           }
       </div>
     );
