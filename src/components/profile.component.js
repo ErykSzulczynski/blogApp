@@ -18,21 +18,20 @@ function MyVerticallyCenteredModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="bg-dark border border-secondary">
-            <form /*onSubmit={this.handleSubmit}*/>
+            <form onSubmit={() => props.handleSubmit}>
               <div className="form-group">
                 <label>
-                  Tytuł post'a<br/>
-                  <input class="form-control" type="text" name="addTitleInputValue" /*onChange={this.handleInputChange}*//>
+                  Title<br/>
                 </label>
+                <input class="form-control" type="text" name="addTitleInputValue" onChange={() => props.handleChange}/>
               </div>
               <div className="form-group">
               <label>
-                Content post'a:<br/>
-                <textarea class="form-control" name="addContentInputValue" /*onChange={this.handleInputChange}*//>
+                Content<br/>
               </label>
+              <textarea class="form-control" name="addContentInputValue" onChange={() => props.handleChange}/>
               </div>
-              
-              <input class="form-control" type="submit" value="Dodaj post"/>
+              <input class="btn btn-primary" type="submit"  value="Dodaj post"/>
             </form>
       </Modal.Body>
     </Modal>
@@ -73,6 +72,7 @@ export default class Profile extends Component {
     this.setState({
       [name]: value
     });
+
   }
 
   handleSubmit(event) {
@@ -82,7 +82,7 @@ export default class Profile extends Component {
 
   setPostsState = (val, uId) => {
     this.setState({
-      userPosts: val.data,
+      userPosts: val.data.Post,
       userPostsStatus: true,
       userId: uId
     })
@@ -90,12 +90,10 @@ export default class Profile extends Component {
 
   render() {
     const { currentUser } = this.state;
-    {
-      if(this.state.userPosts == "Not loaded"){
-        let postsObj = PostsService.getUserPosts(currentUser.id)
-        let postObjResult;
-        postsObj.then(result => this.setPostsState(result, currentUser.id))
-      }
+    if(this.state.userPosts === "Not loaded"){
+      let postsObj = PostsService.getUserPosts(currentUser.id)
+      let postObjResult;
+      postsObj.then(result => this.setPostsState(result, currentUser.id))
     }
     return (
       <div>
@@ -124,12 +122,27 @@ export default class Profile extends Component {
           {currentUser.email}
         </p>
         <strong>Authorities:</strong>
-        <ul class="list-group mb-4">
+        <ul className="list-group mb-4">
           {currentUser.roles &&
-            currentUser.roles.map((role, index) => <li class="list-group-item list-group-item-dark" key={index}>{role}</li>)}
+            currentUser.roles.map((role, index) => <li className="list-group-item list-group-item-dark" key={index}>{role}</li>)}
         </ul>
         <div>
-          <h2>My posts <button type="button" class="btn btn-primary" onClick={() => this.setModalShow()}>Primary</button></h2>
+          <form onSubmit={() => this.handleSubmit}>
+              <div className="form-group">
+                <label>
+                  Title<br/>
+                </label>
+                <input className="form-control" type="text" name="addTitleInputValue" onChange={this.handleInputChange}/>
+              </div>
+              <div className="form-group">
+              <label>
+                Content<br/>
+              </label>
+              <textarea className="form-control" name="addContentInputValue" onChange={this.handleInputChange}/>
+              </div>
+              <input className="btn btn-primary" type="submit"  value="Dodaj post"/>
+          </form>
+          <h2 className="mt-4">My posts {/*<button type="button" class="btn btn-primary" onClick={() => this.setModalShow()}>Add Post</button>*/}</h2>
           <div>
             {this.state.userPostsStatus ? this.state.userPosts.map(item => <div><h2>{item.title}</h2><p>{item.author + " | " + item.date}</p><p>{item.text}</p></div>) : null}
           </div>

@@ -60,36 +60,13 @@ class App extends Component {
                   <FontAwesomeIcon icon={faHome} />
                 </Link>
               </li>
-
-              {showModeratorBoard && (
-                <li className="nav-item">
-                  <Link to={"/mod"} className="nav-link">
-                    <FontAwesomeIcon icon={faUserCog} />
-                  </Link>
-                </li>
-              )}
-
-              {showAdminBoard && (
-                <li className="nav-item">
-                  <Link to={"/admin"} className="nav-link">
-                    Admin Board
-                  </Link>
-                </li>
-              )}
-
-              {currentUser && (
-                <li className="nav-item">
-                  <Link to={"/user"} className="nav-link">
-                  </Link>
-                </li>
-              )}
             </div>
 
             {currentUser ? (
               <div className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <Link to={"/profile"} className="nav-link">
-                  <FontAwesomeIcon icon={faUser} />{currentUser.username}
+                    <FontAwesomeIcon icon={faUser} /><span className="pl-2">{currentUser.username}</span>
                   </Link>
                 </li>
                 <li className="nav-item">

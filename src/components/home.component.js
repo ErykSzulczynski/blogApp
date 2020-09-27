@@ -76,7 +76,7 @@ export default class Home extends Component {
         </div>
           {this.state.specPostActive ? 
             <Post>
-                <button class="btn btn-outline-info" onClick={() => {this.goBack()}}>Go back</button>
+                <button class="btn btn-outline-info mb-4" onClick={() => {this.goBack()}}>Go back</button>
                 <h2>{this.state.currPostTitle}</h2>
                 <p>{this.state.currPostAuthor} | {this.state.currPostDate}</p>
                 <p>{this.state.currPostText}</p>
