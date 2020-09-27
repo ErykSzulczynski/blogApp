@@ -76,6 +76,7 @@ export default class Profile extends Component {
   }
 
   handleSubmit(event) {
+    console.log("Handlesubmit")
     PostsService.addPost(this.state.addTitleInputValue, this.state.addContentInputValue, this.state.userId)
     event.preventDefault();
   }
@@ -126,7 +127,7 @@ export default class Profile extends Component {
             currentUser.roles.map((role, index) => <li className="list-group-item list-group-item-dark" key={index}>{role}</li>)}
         </ul>
         <div>
-          <form onSubmit={() => this.handleSubmit}>
+          <form>
               <div className="form-group">
                 <label>
                   Title<br/>
@@ -139,7 +140,7 @@ export default class Profile extends Component {
               </label>
               <textarea className="form-control" name="addContentInputValue" onChange={this.handleInputChange}/>
               </div>
-              <input className="btn btn-primary" type="submit"  value="Dodaj post"/>
+              <input className="btn btn-primary" type="submit" value="Dodaj post" onClick={() => this.handleSubmit()}/>
           </form>
           <h2 className="mt-4">My posts {/*<button type="button" class="btn btn-primary" onClick={() => this.setModalShow()}>Add Post</button>*/}</h2>
           <div>
